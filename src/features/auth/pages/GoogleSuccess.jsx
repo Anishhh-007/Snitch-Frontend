@@ -7,20 +7,23 @@ const GoogleSuccess = () => {
     const [searchParams] = useSearchParams();
 
 
-    const setCookies = async () => {
-        axios.post(`${import.meta.env.VITE_FRONTEND_URL}/api/auth/google/set-cookie`,
-            { token },
-            { withCredentials: true } // ← so the cookie gets stored
-        )
-            .then(() => navigate('/', { replace: true }))
-            .catch(() => navigate('/login', { replace: true }));
+    const setCookies = async (token) => {
+        try {
+            await axios.post(`${import.meta.env.VITE_FRONTEND_URL}/api/auth/google/set-cookie`,
+                { token },
+                { withCredentials: true } // ← so the cookie gets stored
+            )
+        } catch (error) {
+            console.log(error)
+        }
     }
     useEffect(() => {
         const token = searchParams.get("token");
 
         if (token) {
             // Send token to backend — let IT set the cookie
-            setCookies()
+            setCookies(token)
+            navigate('/', { replace: true })
         } else {
             navigate('/login', { replace: true });
         }
