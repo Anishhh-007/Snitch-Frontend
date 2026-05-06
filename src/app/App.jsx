@@ -17,8 +17,7 @@ import PaymentSuccess from '../features/esewa/pages/PaymentSuccess.jsx'
 import PaymentFailure from '../features/esewa/pages/PaymentFailure.jsx'
 import Orders from '../features/esewa/pages/Orders.jsx'
 import UserProtected from '../features/products/component/UserProtected.jsx'
-import dotenv from 'dotenv'
-dotenv.config()
+
 
 function App() {
   const { handeluser } = useAuth()
