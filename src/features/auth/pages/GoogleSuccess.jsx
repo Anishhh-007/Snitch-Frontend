@@ -1,7 +1,6 @@
-// React component: /auth/google/success
-import { useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import Cookies from 'js-cookie'; // npm install js-cookie
+import axios from "axios";
+import { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router";
 
 const GoogleSuccess = () => {
     const navigate = useNavigate();
@@ -11,18 +10,13 @@ const GoogleSuccess = () => {
         const token = searchParams.get("token");
 
         if (token) {
-            // Set the cookie on the FRONTEND domain ✅
-            Cookies.set('token', token, {
-                expires: 7,
-                secure: true,
-                sameSite: 'None',
-            });
-
-            // OR use localStorage if you prefer:
-            // localStorage.setItem('token', token);
-
-            // Clean the URL and redirect
-            navigate('/', { replace: true });
+            // Send token to backend — let IT set the cookie
+            axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/google/set-cookie`,
+                { token },
+                { withCredentials: true } // ← so the cookie gets stored
+            )
+                .then(() => navigate('/', { replace: true }))
+                .catch(() => navigate('/login', { replace: true }));
         } else {
             navigate('/login', { replace: true });
         }
@@ -30,5 +24,3 @@ const GoogleSuccess = () => {
 
     return <p>Signing you in...</p>;
 };
-
-export default GoogleSuccess;
