@@ -25,3 +25,5 @@ const GoogleSuccess = () => {
 
     return <p>Signing you in...</p>;
 };
+
+export default GoogleSuccess
