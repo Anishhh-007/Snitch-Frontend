@@ -8,6 +8,7 @@ const GoogleSuccess = () => {
 
     useEffect(() => {
         const token = searchParams.get("token");
+        console.log(token)
 
         if (token) {
             // Send token to backend — let IT set the cookie
