@@ -12,7 +12,7 @@ const GoogleSuccess = () => {
 
         if (token) {
             // Send token to backend — let IT set the cookie
-            axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/google/set-cookie`,
+            axios.post(`${import.meta.env.VITE_FRONTEND_URL}/api/auth/google/set-cookie`,
                 { token },
                 { withCredentials: true } // ← so the cookie gets stored
             )
