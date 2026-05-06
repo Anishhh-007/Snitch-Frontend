@@ -5,9 +5,9 @@ import Cookies from 'js-cookie'; // npm install js-cookie
 
 const GoogleSuccess = () => {
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
-        const [searchParams] = useSearchParams();
         const token = searchParams.get("token");
 
         if (token) {
