@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const productApiInstance = axios.create({
-    baseURL: `/api/product`,
+    baseURL: `${import.meta.env.VITE_FRONTEND_URL}/api/product`,
     withCredentials: true,
 })
 const negotiateApiInstance = axios.create({
-    baseURL: `/api/negotiate`,
+    baseURL: `${import.meta.env.VITE_FRONTEND_URL}/api/negotiate`,
     withCredentials: true,
 })
 export const createProduct = async (productData) => {

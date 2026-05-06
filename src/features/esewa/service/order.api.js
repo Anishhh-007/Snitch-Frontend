@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 const orderApiInstance = axios.create({
-    baseURL: `/api/order`,
+    baseURL: `${import.meta.env.VITE_FRONTEND_URL}/api/order`,
     withCredentials: true,
 })
 export const createOrder = async (productId, variantId, price, access) => {
