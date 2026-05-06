@@ -10,7 +10,6 @@ const GoogleSuccess = () => {
         const [searchParams] = useSearchParams();
         const token = searchParams.get("token");
 
-        console.log(searchParams);
         if (token) {
             // Set the cookie on the FRONTEND domain ✅
             Cookies.set('token', token, {
