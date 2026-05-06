@@ -17,6 +17,7 @@ import PaymentSuccess from '../features/esewa/pages/PaymentSuccess.jsx'
 import PaymentFailure from '../features/esewa/pages/PaymentFailure.jsx'
 import Orders from '../features/esewa/pages/Orders.jsx'
 import UserProtected from '../features/products/component/UserProtected.jsx'
+import GoogleSuccess from '../features/auth/pages/GoogleSuccess.jsx'
 
 
 function App() {
@@ -53,6 +54,8 @@ function App() {
         <Route path="/success" element={<UserProtected><PaymentSuccess /></UserProtected>} />
         <Route path="/failure" element={<UserProtected><PaymentFailure /></UserProtected>} />
         <Route path="/orders" element={<UserProtected><Orders /></UserProtected>} />
+        <Route path="/auth/google/success" element={<GoogleSuccess />} />
+
       </Routes>
     </>
   )
