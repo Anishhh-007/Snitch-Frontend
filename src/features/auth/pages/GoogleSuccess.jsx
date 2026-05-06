@@ -1,15 +1,16 @@
 // React component: /auth/google/success
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import Cookies from 'js-cookie'; // npm install js-cookie
 
 const GoogleSuccess = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const token = params.get('token');
+        const [searchParams] = useSearchParams();
+        const token = searchParams.get("token");
 
+        console.log(searchParams);
         if (token) {
             // Set the cookie on the FRONTEND domain ✅
             Cookies.set('token', token, {
