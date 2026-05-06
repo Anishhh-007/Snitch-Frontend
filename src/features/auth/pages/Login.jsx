@@ -148,7 +148,7 @@ const Login = () => {
 
                             {/* Google */}
                             <a
-                                href="/api/auth/google"
+                                href={import.meta.env.VITE_FRONTEND_URL + '/api/auth/google'}
                                 className="flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl border border-black/10 bg-[#faf8f5] px-4 py-3 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50 hover:text-zinc-900"
                             >
                                 <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
