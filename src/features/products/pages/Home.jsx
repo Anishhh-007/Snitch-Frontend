@@ -57,20 +57,32 @@ const Home = () => {
     const [activeCategory, setActiveCategory] = useState("All");
     const [state, setState] = useState(false);
     const [Logout, setLogout] = useState(false);
-    const [sortOrder, setSortOrder] = useState(null); // null | "asc" | "desc"
+    const [sortOrder, setSortOrder] = useState(null);
     const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const [productStatus, setProductStatus] = useState(false);
+
+    const fetchAllProducts = async () => {
+        try {
+            setProductStatus(true);
+            const res = await handelGetAllproduct();
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setProductStatus(false);
+        }
+    };
 
     useEffect(() => {
-        handelGetAllproduct();
+        fetchAllProducts();
     }, []);
 
     const handleLogout = async () => {
         try {
             setState(true);
             const res = await handelLogout();
-            dispatch(setUser(null))
+            dispatch(setUser(null));
         } catch (error) {
             toast.error(error?.response?.data?.message);
         } finally {
@@ -80,7 +92,6 @@ const Home = () => {
         }
     };
 
-    // Cycle: null → "asc" → "desc" → null
     const cycleSortOrder = () => {
         setSortOrder((prev) => {
             if (prev === null) return "asc";
@@ -114,7 +125,6 @@ const Home = () => {
         });
     }, [products, search, activeCategory, sortOrder]);
 
-    // Sort button label & icon
     const sortLabel =
         sortOrder === "asc"
             ? "Price: Low → High"
@@ -127,91 +137,93 @@ const Home = () => {
 
     return (
         <div className="min-h-screen bg-[#f6f3ee] text-zinc-900">
-            {user && <header className="sticky top-0 z-30 border-b border-black/5 bg-[#111111] text-white shadow-[0_6px_24px_rgba(0,0,0,0.08)]">
-                <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
-                    <button
-                        type="button"
-                        className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/90 transition hover:bg-white/10 lg:hidden"
-                        aria-label="Open menu"
-                    >
-                        <Menu className="h-5 w-5" />
-                    </button>
+            {user && (
+                <header className="sticky top-0 z-30 border-b border-black/5 bg-[#111111] text-white shadow-[0_6px_24px_rgba(0,0,0,0.08)]">
+                    <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
+                        <button
+                            type="button"
+                            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/90 transition hover:bg-white/10 lg:hidden"
+                            aria-label="Open menu"
+                        >
+                            <Menu className="h-5 w-5" />
+                        </button>
 
-                    <Link to="/" className="flex shrink-0 items-center gap-3">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#f2e9dd] text-[#1b1b1b] shadow-sm">
-                            <Sparkles className="h-5 w-5" />
-                        </div>
-                        <div className="leading-tight">
-                            <p className="text-xs uppercase tracking-[0.35em] text-white/45">
-                                Stnitch
-                            </p>
-                            <h1 className="text-lg font-semibold">Store</h1>
-                        </div>
-                    </Link>
+                        <Link to="/" className="flex shrink-0 items-center gap-3">
+                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#f2e9dd] text-[#1b1b1b] shadow-sm">
+                                <Sparkles className="h-5 w-5" />
+                            </div>
+                            <div className="leading-tight">
+                                <p className="text-xs uppercase tracking-[0.35em] text-white/45">
+                                    Stnitch
+                                </p>
+                                <h1 className="text-lg font-semibold">Store</h1>
+                            </div>
+                        </Link>
 
-                    <div className="hidden flex-1 items-center gap-3 lg:flex">
-                        <div className="flex flex-1 items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5">
+                        <div className="hidden flex-1 items-center gap-3 lg:flex">
+                            <div className="flex flex-1 items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5">
+                                <Search className="h-4 w-4 text-white/45" />
+                                <input
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                    type="text"
+                                    placeholder="Search products, shirts, jackets, accessories..."
+                                    className="ml-3 w-full bg-transparent text-sm text-white placeholder:text-white/35 outline-none"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="ml-auto flex items-center gap-2">
+                            <Link
+                                to="/cart"
+                                className="inline-flex h-11 items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 text-sm font-medium text-white/80 transition hover:bg-white/10"
+                            >
+                                <ShoppingCart className="h-4 w-4" />
+                                Cart
+                            </Link>
+                            <button
+                                type="button"
+                                onClick={() => navigate("/orders")}
+                                className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                            >
+                                <ScrollText className="h-4 w-4" />
+                                Orders
+                            </button>
+                            {user?.role === "seller" && (
+                                <button
+                                    type="button"
+                                    onClick={() => navigate("/dashboard")}
+                                    className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                                >
+                                    <ArrowLeft className="h-4 w-4" />
+                                    Dashboard
+                                </button>
+                            )}
+                            <button
+                                type="button"
+                                onClick={() => setLogout(true)}
+                                className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                            >
+                                <LogOut className="h-4 w-4" />
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="border-t border-white/5 bg-white/5 px-4 py-3 lg:hidden">
+                        <div className="mx-auto flex max-w-7xl items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5">
                             <Search className="h-4 w-4 text-white/45" />
                             <input
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 type="text"
-                                placeholder="Search products, shirts, jackets, accessories..."
+                                placeholder="Search products..."
                                 className="ml-3 w-full bg-transparent text-sm text-white placeholder:text-white/35 outline-none"
                             />
                         </div>
                     </div>
-
-                    <div className="ml-auto flex items-center gap-2">
-                        <Link
-                            to="/cart"
-                            className="inline-flex h-11 items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 text-sm font-medium text-white/80 transition hover:bg-white/10"
-                        >
-                            <ShoppingCart className="h-4 w-4" />
-                            Cart
-                        </Link>
-                        <button
-                            type="button"
-                            onClick={() => navigate("/orders")}
-                            className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
-                        >
-                            <ScrollText className="h-4 w-4" />
-                            Orders
-                        </button>
-                        {user?.role === "seller" && (
-                            <button
-                                type="button"
-                                onClick={() => navigate("/dashboard")}
-                                className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
-                            >
-                                <ArrowLeft className="h-4 w-4" />
-                                Dashboard
-                            </button>
-                        )}
-                        <button
-                            type="button"
-                            onClick={() => setLogout(true)}
-                            className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
-                        >
-                            <LogOut className="h-4 w-4" />
-                            Logout
-                        </button>
-                    </div>
-                </div>
-
-                <div className="border-t border-white/5 bg-white/5 px-4 py-3 lg:hidden">
-                    <div className="mx-auto flex max-w-7xl items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5">
-                        <Search className="h-4 w-4 text-white/45" />
-                        <input
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            type="text"
-                            placeholder="Search products..."
-                            className="ml-3 w-full bg-transparent text-sm text-white placeholder:text-white/35 outline-none"
-                        />
-                    </div>
-                </div>
-            </header>}
+                </header>
+            )}
 
             <section className="border-b border-black/5 bg-[#f6f3ee]">
                 <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
@@ -251,7 +263,6 @@ const Home = () => {
                         </p>
                     </div>
 
-                    {/* Sort button — cycles null → asc → desc → null */}
                     <button
                         type="button"
                         onClick={cycleSortOrder}
@@ -265,7 +276,39 @@ const Home = () => {
                     </button>
                 </div>
 
-                {filteredProducts.length === 0 ? (
+                {productStatus ? (
+                    <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+                        {Array.from({ length: 8 }).map((_, i) => (
+                            <div
+                                key={i}
+                                className="overflow-hidden rounded-[1.75rem] border border-black/5 bg-white shadow-sm"
+                            >
+                                <div className="relative aspect-[4/5] bg-[#f4f1eb] overflow-hidden">
+                                    <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+                                </div>
+                                <div className="p-4 space-y-3">
+                                    <div className="relative h-4 w-3/4 rounded-full bg-zinc-100 overflow-hidden">
+                                        <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite_0.1s] bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                                    </div>
+                                    <div className="relative h-3 w-full rounded-full bg-zinc-100 overflow-hidden">
+                                        <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite_0.15s] bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                                    </div>
+                                    <div className="relative h-3 w-2/3 rounded-full bg-zinc-100 overflow-hidden">
+                                        <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite_0.2s] bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                                    </div>
+                                    <div className="mt-4 flex items-center justify-between border-t border-black/5 pt-4">
+                                        <div className="relative h-6 w-16 rounded-full bg-zinc-100 overflow-hidden">
+                                            <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite_0.25s] bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                                        </div>
+                                        <div className="relative h-9 w-20 rounded-2xl bg-zinc-100 overflow-hidden">
+                                            <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.4s_infinite_0.3s] bg-gradient-to-r from-transparent via-white/80 to-transparent" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ) : filteredProducts.length === 0 ? (
                     <div className="rounded-[2rem] border border-black/5 bg-white p-10 text-center shadow-sm">
                         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#f2e9dd] text-[#171717]">
                             <ShoppingCart className="h-6 w-6" />
@@ -309,7 +352,6 @@ const Home = () => {
                                                     <ShoppingCart className="h-10 w-10" />
                                                 </div>
                                             )}
-
                                             <div className="absolute left-3 top-3 rounded-full border border-black/5 bg-white/90 px-3 py-1 text-xs font-semibold text-zinc-700 shadow-sm backdrop-blur">
                                                 {currency}
                                             </div>
@@ -353,6 +395,7 @@ const Home = () => {
                     </div>
                 )}
             </main>
+
             {/* Logout Confirmation Dialog */}
             {Logout && (
                 <>

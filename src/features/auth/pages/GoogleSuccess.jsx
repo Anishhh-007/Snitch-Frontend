@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
+import { useAuth } from "../hook/useAuth";
 
 const GoogleSuccess = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
-
+    const { handeluser } = useAuth()
 
     const setCookies = async (token) => {
         try {
@@ -17,12 +18,18 @@ const GoogleSuccess = () => {
             console.log(error)
         }
     }
+
+    const fetchUser = async () => {
+        await handeluser()
+    }
+
     useEffect(() => {
         const token = searchParams.get("token");
 
         if (token) {
             // Send token to backend — let IT set the cookie
             setCookies(token)
+            fetchUser()
             navigate('/', { replace: true })
         } else {
             navigate('/login', { replace: true });
