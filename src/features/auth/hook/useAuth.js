@@ -59,6 +59,7 @@ export const useAuth = () => {
     async function handelLogout() {
         try {
             const res = await logout()
+            dispatch(setUser(null))
             toast.success(res?.data?.message)
         } catch (error) {
             toast.error(error?.response?.data?.message)

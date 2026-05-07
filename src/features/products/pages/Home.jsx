@@ -51,8 +51,7 @@ const getProductPrice = (product) => {
 
 const Home = () => {
     const { handelGetAllproduct } = useProduct();
-    const { handeluser } = useAuth();
-    const { handelLogout } = useAuth();
+    const { handelLogout, handeluser } = useAuth();
     const products = useSelector((state) => state.product.allProducts) || [];
     const [search, setSearch] = useState("");
     const [activeCategory, setActiveCategory] = useState("All");
