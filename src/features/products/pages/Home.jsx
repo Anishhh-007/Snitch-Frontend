@@ -146,7 +146,7 @@ const Home = () => {
                     <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
                         <button
                             type="button"
-                            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-white/90 transition hover:bg-white/10 lg:hidden"
+                            className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-zinc-700 transition hover:bg-zinc-50 lg:hidden"
                             aria-label="Open menu"
                         >
                             <Menu className="h-5 w-5" />
@@ -157,7 +157,7 @@ const Home = () => {
                                 <Sparkles className="h-5 w-5" />
                             </div>
                             <div className="leading-tight">
-                                <p className="text-xs uppercase tracking-[0.35em] text-white/45">
+                                <p className="text-xs uppercase tracking-[0.35em] text-black/45">
                                     Stnitch
                                 </p>
                                 <h1 className="text-lg font-semibold">Store</h1>
@@ -165,8 +165,8 @@ const Home = () => {
                         </Link>
 
                         <div className="hidden flex-1 items-center gap-3 lg:flex">
-                            <div className="flex flex-1 items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5">
-                                <Search className="h-4 w-4 text-white/45" />
+                            <div className="flex flex-1 items-center rounded-2xl border border-black/10 bg-white/5 px-4 py-2.5">
+                                <Search className="h-4 w-4 text-black/45" />
                                 <input
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
@@ -180,7 +180,8 @@ const Home = () => {
                         <div className="ml-auto flex items-center gap-2">
                             <Link
                                 to="/cart"
-                                className="inline-flex h-11 items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 text-sm font-medium text-white/80 transition hover:bg-white/10"
+                                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-zinc-700 transition hover:bg-zinc-50 lg:hidden"
+
                             >
                                 <ShoppingCart className="h-4 w-4" />
                                 Cart
@@ -188,7 +189,8 @@ const Home = () => {
                             <button
                                 type="button"
                                 onClick={() => navigate("/orders")}
-                                className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-zinc-700 transition hover:bg-zinc-50 lg:hidden"
+
                             >
                                 <ScrollText className="h-4 w-4" />
                                 Orders
@@ -197,7 +199,8 @@ const Home = () => {
                                 <button
                                     type="button"
                                     onClick={() => navigate("/dashboard")}
-                                    className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                                    className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-zinc-700 transition hover:bg-zinc-50 lg:hidden"
+
                                 >
                                     <ArrowLeft className="h-4 w-4" />
                                     Dashboard
@@ -206,7 +209,8 @@ const Home = () => {
                             <button
                                 type="button"
                                 onClick={() => setLogout(true)}
-                                className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-zinc-700 transition hover:bg-zinc-50 lg:hidden"
+
                             >
                                 <LogOut className="h-4 w-4" />
                                 Logout
@@ -214,15 +218,15 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="border-t border-white/5 bg-white/5 px-4 py-3 lg:hidden">
-                        <div className="mx-auto flex max-w-7xl items-center rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5">
-                            <Search className="h-4 w-4 text-white/45" />
+                    <div className="border-t border-black/5 bg-white/5 px-4 py-3 lg:hidden">
+                        <div className="mx-auto flex max-w-7xl items-center rounded-2xl border border-black/10 bg-white/5 px-4 py-2.5">
+                            <Search className="h-4 w-4 text-black/45" />
                             <input
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                                 type="text"
                                 placeholder="Search products..."
-                                className="ml-3 w-full bg-transparent text-sm text-white placeholder:text-white/35 outline-none"
+                                className="ml-3 w-full bg-transparent text-sm text-black placeholder:text-black/35 outline-none"
                             />
                         </div>
                     </div>

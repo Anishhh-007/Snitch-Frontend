@@ -44,7 +44,8 @@ const Navbar = ({ role, status }) => {
                     <button
                         type="button"
                         onClick={() => navigate("/")}
-                        className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                        className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-black/10 bg-white px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-50 sm:px-4 sm:py-2.5 sm:text-sm"
+
                     >
                         <Home className="h-4 w-4" />
                         Home
@@ -53,7 +54,8 @@ const Navbar = ({ role, status }) => {
                     <button
                         type="button"
                         onClick={() => navigate("/cart")}
-                        className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                        className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-black/10 bg-white px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-50 sm:px-4 sm:py-2.5 sm:text-sm"
+
                     >
                         <ShoppingCart className="h-4 w-4" />
                         Cart
@@ -61,7 +63,8 @@ const Navbar = ({ role, status }) => {
                     <button
                         type="button"
                         onClick={() => navigate("/orders")}
-                        className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                        className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-black/10 bg-white px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-50 sm:px-4 sm:py-2.5 sm:text-sm"
+
                     >
                         <ScrollText className="h-4 w-4" />
                         Orders
@@ -70,7 +73,8 @@ const Navbar = ({ role, status }) => {
                         <button
                             type="button"
                             onClick={() => navigate("/dashboard")}
-                            className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                            className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-black/10 bg-white px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-50 sm:px-4 sm:py-2.5 sm:text-sm"
+
                         >
                             <ArrowLeft className="h-4 w-4" />
                             Dashboard
@@ -80,7 +84,8 @@ const Navbar = ({ role, status }) => {
                     <button
                         type="button"
                         onClick={() => setLogout(true)}
-                        className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium text-white/80 transition hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm"
+                        className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-black/10 bg-white px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-50 sm:px-4 sm:py-2.5 sm:text-sm"
+
                     >
                         <LogOut className="h-4 w-4" />
                         Logout
