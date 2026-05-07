@@ -14,6 +14,7 @@ const Protected = ({ children }) => {
         const fetchUser = async () => {
             try {
                 const role = await handeluser();
+                console.log(role)
                 setUserRole(role);
             } catch (error) {
                 console.error("Failed to fetch role", error);
@@ -22,7 +23,7 @@ const Protected = ({ children }) => {
             }
         };
         fetchUser();
-    }, [handeluser]);
+    }, []);
 
     // 2. Wait for BOTH Redux loading and your local fetch to finish
     if (isFetching) {
