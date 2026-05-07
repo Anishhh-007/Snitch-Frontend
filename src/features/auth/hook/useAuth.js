@@ -13,14 +13,14 @@ export const useAuth = () => {
 
             const res = await register({ email, password, fullname, contact, isSeller })
             console.log("register : ", res)
-            if (res.status === 201) {
-                if (res.data.user.role === 'seller') {
-                    navigate('/dashboard')
-                } else {
-                    navigate('/')
-                }
-                dispatch(setUser(res.data.user))
+
+            if (res.data.user.role === 'seller') {
+                navigate('/dashboard')
+            } else {
+                navigate('/')
             }
+            dispatch(setUser(res.data.user))
+
         } catch (error) {
             toast.error(error?.response?.data?.message)
         }
