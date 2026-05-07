@@ -172,7 +172,7 @@ const Home = () => {
                                     onChange={(e) => setSearch(e.target.value)}
                                     type="text"
                                     placeholder="Search products, shirts, jackets, accessories..."
-                                    className="ml-3 w-full bg-transparent text-sm text-white placeholder:text-white/35 outline-none"
+                                    className="ml-3 w-full bg-transparent text-sm text-black placeholder:text-black/35 outline-none"
                                 />
                             </div>
                         </div>
@@ -180,8 +180,7 @@ const Home = () => {
                         <div className="ml-auto flex items-center gap-2">
                             <Link
                                 to="/cart"
-                                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-zinc-700 transition hover:bg-zinc-50 lg:hidden"
-
+                                className="inline-flex items-center gap-2 rounded-2xl border border-black/10 bg-white px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-50 sm:px-4 sm:py-2.5 sm:text-sm"
                             >
                                 <ShoppingCart className="h-4 w-4" />
                                 Cart
@@ -189,8 +188,7 @@ const Home = () => {
                             <button
                                 type="button"
                                 onClick={() => navigate("/orders")}
-                                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-zinc-700 transition hover:bg-zinc-50 lg:hidden"
-
+                                className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-black/10 bg-white px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-50 sm:px-4 sm:py-2.5 sm:text-sm"
                             >
                                 <ScrollText className="h-4 w-4" />
                                 Orders
@@ -199,8 +197,7 @@ const Home = () => {
                                 <button
                                     type="button"
                                     onClick={() => navigate("/dashboard")}
-                                    className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-zinc-700 transition hover:bg-zinc-50 lg:hidden"
-
+                                    className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-black/10 bg-white px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-50 sm:px-4 sm:py-2.5 sm:text-sm"
                                 >
                                     <ArrowLeft className="h-4 w-4" />
                                     Dashboard
@@ -209,8 +206,7 @@ const Home = () => {
                             <button
                                 type="button"
                                 onClick={() => setLogout(true)}
-                                className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-black/10 bg-white text-zinc-700 transition hover:bg-zinc-50 lg:hidden"
-
+                                className="inline-flex cursor-pointer items-center gap-2 rounded-2xl border border-black/10 bg-white px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-50 sm:px-4 sm:py-2.5 sm:text-sm"
                             >
                                 <LogOut className="h-4 w-4" />
                                 Logout

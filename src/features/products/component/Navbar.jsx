@@ -35,7 +35,7 @@ const Navbar = ({ role, status }) => {
                         <Sparkles className="h-5 w-5" />
                     </div>
                     <div className="leading-tight">
-                        <p className="text-xs uppercase tracking-[0.35em] text-white/45">Stnitch</p>
+                        <p className="text-xs uppercase tracking-[0.35em] text-black/45">Stnitch</p>
                         <h1 className="text-lg font-semibold">Product details</h1>
                     </div>
                 </div>
