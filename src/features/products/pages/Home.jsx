@@ -51,7 +51,7 @@ const getProductPrice = (product) => {
 
 const Home = () => {
     const { handelGetAllproduct } = useProduct();
-    const { handelLogout, handeluser } = useAuth();
+    const { handelLogout } = useAuth();
     const products = useSelector((state) => state.product.allProducts) || [];
     const [search, setSearch] = useState("");
     const [activeCategory, setActiveCategory] = useState("All");
@@ -74,20 +74,11 @@ const Home = () => {
         }
     };
 
-    const fetchUser = async () => {
-        try {
-            const res = await handeluser()
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
 
 
     useEffect(() => {
         fetchAllProducts();
-        fetchUser()
 
     }, []);
 

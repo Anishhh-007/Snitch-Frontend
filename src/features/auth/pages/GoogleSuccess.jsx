@@ -14,11 +14,16 @@ const GoogleSuccess = () => {
                 { token },
                 { withCredentials: true } // ← so the cookie gets stored
             )
+
+            fetchUser()
+
         } catch (error) {
             console.log(error)
         }
     }
-
+    const fetchUser = async () => {
+        await handeluser()
+    }
 
     useEffect(() => {
         const token = searchParams.get("token");
@@ -26,7 +31,9 @@ const GoogleSuccess = () => {
         if (token) {
             // Send token to backend — let IT set the cookie
             setCookies(token)
-            navigate('/', { replace: true })
+            setTimeout(() => {
+                navigate('/', { replace: true })
+            }, 1800);
         } else {
             navigate('/login', { replace: true });
         }
