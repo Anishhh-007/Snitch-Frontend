@@ -23,8 +23,8 @@ const AmountForm = () => {
         product_code: "EPAYTEST",
         product_service_charge: "0",
         product_delivery_charge: "0",
-        success_url: `https://localhost:5173/success`,
-        failure_url: `https://localhost:5173/failure`,
+        success_url: `https://snitch-frontend-qedb.vercel.app/success`,
+        failure_url: `https://snitch-frontend-qedb.vercel.app/failure`,
         signed_field_names: "total_amount,transaction_uuid,product_code",
     });
 
