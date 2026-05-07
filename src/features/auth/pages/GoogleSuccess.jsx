@@ -19,9 +19,6 @@ const GoogleSuccess = () => {
         }
     }
 
-    const fetchUser = async () => {
-        await handeluser()
-    }
 
     useEffect(() => {
         const token = searchParams.get("token");
@@ -29,7 +26,6 @@ const GoogleSuccess = () => {
         if (token) {
             // Send token to backend — let IT set the cookie
             setCookies(token)
-            fetchUser()
             navigate('/', { replace: true })
         } else {
             navigate('/login', { replace: true });
