@@ -14,8 +14,8 @@ const Protected = ({ children }) => {
         const fetchUser = async () => {
             try {
                 const role = await handeluser();
-                console.log(role)
-                setUserRole(role);
+                console.log(role.role)
+                setUserRole(role.role);
             } catch (error) {
                 console.error("Failed to fetch role", error);
             } finally {

@@ -12,7 +12,6 @@ export const useAuth = () => {
         try {
 
             const res = await register({ email, password, fullname, contact, isSeller })
-            console.log("register : ", res)
 
             if (res.data.user.role === 'seller') {
                 navigate('/dashboard')
