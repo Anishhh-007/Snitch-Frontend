@@ -28,7 +28,7 @@ const Navbar = ({ role, status }) => {
 
 
     return (
-        (user && <> <header className="border-b border-black/5 bg-[#111111] text-white shadow-[0_6px_24px_rgba(0,0,0,0.08)]">
+        (user && <> <header className="border-b border-black/5 bg-[#f6f3ee] text-zinc-900 shadow-[0_6px_24px_rgba(0,0,0,0.08)]">
             <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
                 <div className="flex items-center gap-3">
                     <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#f2e9dd] text-[#171717] shadow-sm">

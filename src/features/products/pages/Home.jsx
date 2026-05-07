@@ -142,7 +142,7 @@ const Home = () => {
     return (
         <div className="min-h-screen bg-[#f6f3ee] text-zinc-900">
             {user && (
-                <header className="sticky top-0 z-30 border-b border-black/5 bg-[#111111] text-white shadow-[0_6px_24px_rgba(0,0,0,0.08)]">
+                <header className="sticky top-0 z-30 border-b border-black/5 bg-[#f6f3ee] text-zinc-900 shadow-[0_6px_24px_rgba(0,0,0,0.08)]">
                     <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 sm:px-6 lg:px-8">
                         <button
                             type="button"
