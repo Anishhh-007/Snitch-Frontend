@@ -40,7 +40,7 @@ const Navbar = ({ role, status }) => {
                     </div>
                 </div>
 
-                <nav className="flex items-center gap-2 sm:gap-3">
+                <nav className="flex items-center text-zinc-900 gap-2 sm:gap-3">
                     <button
                         type="button"
                         onClick={() => navigate("/")}
