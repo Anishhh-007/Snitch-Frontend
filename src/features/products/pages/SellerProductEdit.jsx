@@ -267,7 +267,7 @@ const SellerProductEdit = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#111111] text-white">
+        <div className="min-h-screen bg-[#f6f3ee] text-zinc-900">
             <header className="border-b border-black/5 bg-white text-zinc-900 shadow-sm">
                 <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
                     <div className="flex items-center gap-3">
